@@ -1,0 +1,5 @@
+As a user i want to create account to save all my uploaded data and to access all other features. 
+
+1. The system must allow users to register using an email, phone number, or social media accounts (Google, Facebook, etc.).
+2. The user must provide a unique username and a strong password during registration.
+3. The system must validate the email or phone number through OTP (One-Time Password) verification.
