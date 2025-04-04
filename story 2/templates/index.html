@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Profile Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .form-section {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: solid 1px #7f8c8d;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .optional {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Financial Profile Questionnaire</h1>
+    <p>Please fill out this form to help us generate personalized financial insights and investment suggestions.</p>
+    
+    <form id="financialForm">
+        <!-- Section 1: Personal & Employment Information -->
+        <div class="form-section">
+            <h2>1. Personal & Employment Information</h2>
+            
+            <label for="employmentType">Employment Type*</label>
+            <select id="employmentType" name="employmentType" required>
+                <option value="">-- Select --</option>
+                <option value="salaried">Salaried</option>
+                <option value="selfEmployed">Self-Employed</option>
+                <option value="freelancer">Freelancer</option>
+                <option value="student">Student</option>
+                <option value="unemployed">Unemployed</option>
+            </select>
+            
+            <label for="industry">Industry/Job Role</label>
+            <input type="text" id="industry" name="industry" placeholder="e.g., IT, Healthcare, Finance">
+            
+            <label for="workExperience">Work Experience (in years)*</label>
+            <input type="number" id="workExperience" name="workExperience" min="0" max="50" required>
+            
+            <label for="salaryGrowth">Expected Future Salary Growth <span class="optional">(Optional)</span></label>
+            <input type="number" id="salaryGrowth" name="salaryGrowth" min="0" max="100" placeholder="% increase">
+        </div>
+        
+        <!-- Section 2: Income Details -->
+        <div class="form-section">
+            <h2>2. Income Details</h2>
+            
+            <label for="income">Monthly/Annual Income*</label>
+            <input type="number" id="income" name="income" min="0" step="0.01" required>
+            <select id="incomeFrequency" name="incomeFrequency" required>
+                <option value="monthly">Monthly</option>
+                <option value="annual">Annual</option>
+            </select>
+            
+            <label for="otherIncome">Other Income Sources <span class="optional">(Optional)</span></label>
+            <textarea id="otherIncome" name="otherIncome" rows="3" placeholder="e.g., rental income, dividends, freelancing"></textarea>
+        </div>
+        
+        <!-- Section 3: Expenses & Liabilities -->
+        <div class="form-section">
+            <h2>3. Expenses & Liabilities</h2>
+            
+            <label for="fixedExpenses">Fixed Monthly Expenses*</label>
+            <input type="number" id="fixedExpenses" name="fixedExpenses" min="0" step="0.01" required placeholder="e.g., rent, EMIs, utility bills">
+            
+            <label for="variableExpenses">Variable Expenses <span class="optional">(Optional)</span></label>
+            <input type="number" id="variableExpenses" name="variableExpenses" min="0" step="0.01" placeholder="e.g., entertainment, shopping, travel">
+            
+            <label for="debtTypes">Debt/Loans <span class="optional">(Optional)</span></label>
+            <select id="debtTypes" name="debtTypes" multiple>
+                <option value="homeLoan">Home Loan</option>
+                <option value="educationLoan">Education Loan</option>
+                <option value="personalLoan">Personal Loan</option>
+                <option value="creditCard">Credit Card Debt</option>
+                <option value="otherDebt">Other</option>
+            </select>
+            
+            <label for="emiAmount">EMI Amount <span class="optional">(Optional)</span></label>
+            <input type="number" id="emiAmount" name="emiAmount" min="0" step="0.01">
+            
+            <label for="emiTenure">Remaining Tenure (in months) <span class="optional">(Optional)</span></label>
+            <input type="number" id="emiTenure" name="emiTenure" min="0">
+        </div>
+        
+        <!-- Section 4: Savings & Investments -->
+        <div class="form-section">
+            <h2>4. Savings & Investments</h2>
+            
+            <label for="currentSavings">Current Savings*</label>
+            <input type="number" id="currentSavings" name="currentSavings" min="0" step="0.01" required placeholder="Bank balance, Fixed Deposits">
+            
+            <label for="investments">Investments <span class="optional">(Optional)</span></label>
+            <textarea id="investments" name="investments" rows="3" placeholder="Mutual Funds, Stocks, Crypto, Real Estate, Gold, etc."></textarea>
+            
+            <label for="retirementFunds">Retirement Fund Contributions <span class="optional">(Optional)</span></label>
+            <input type="number" id="retirementFunds" name="retirementFunds" min="0" step="0.01" placeholder="PF, NPS, etc.">
+            
+            <label for="riskAppetite">Risk Appetite*</label>
+            <select id="riskAppetite" name="riskAppetite" required>
+                <option value="">-- Select --</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+        
+        <!-- Section 5: Financial Goals -->
+        <div class="form-section">
+            <h2>5. Financial Goals <span class="optional">(Optional)</span></h2>
+            
+            <label for="shortTermGoals">Short-Term Goals</label>
+            <textarea id="shortTermGoals" name="shortTermGoals" rows="2" placeholder="Buying a gadget, vacation, wedding"></textarea>
+            
+            <label for="mediumTermGoals">Medium-Term Goals</label>
+            <textarea id="mediumTermGoals" name="mediumTermGoals" rows="2" placeholder="Buying a car, higher education"></textarea>
+            
+            <label for="longTermGoals">Long-Term Goals</label>
+            <textarea id="longTermGoals" name="longTermGoals" rows="2" placeholder="Buying a house, retirement planning"></textarea>
+        </div>
+        
+        <!-- Section 6: Tax & Insurance Information -->
+        <div class="form-section">
+            <h2>6. Tax & Insurance Information</h2>
+            
+            <label for="taxBracket">Tax Bracket <span class="optional">(Optional)</span></label>
+            <select id="taxBracket" name="taxBracket">
+                <option value="">-- Select --</option>
+                <option value="5">5%</option>
+                <option value="10">10%</option>
+                <option value="20">20%</option>
+                <option value="30">30%</option>
+            </select>
+            
+            <label for="healthInsurance">Health Insurance Coverage <span class="optional">(Optional)</span></label>
+            <input type="text" id="healthInsurance" name="healthInsurance" placeholder="Coverage amount, provider">
+            
+            <label for="lifeInsurance">Life Insurance Policy Details <span class="optional">(Optional)</span></label>
+            <textarea id="lifeInsurance" name="lifeInsurance" rows="2" placeholder="Policy amount, provider, term"></textarea>
+        </div>
+        
+        <button type="submit">Submit Financial Profile</button>
+    </form>
+    
+    <script>
+        document.getElementById('financialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically collect the form data and send it to a server
+            alert('Form submitted successfully!');
+            // You can add AJAX code here to send the data to your backend
+        });
+    </script>
+</body>
+</html>
