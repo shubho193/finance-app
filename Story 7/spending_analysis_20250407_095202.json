@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "exported_at": "2025-04-07T09:52:02.463373",
+    "analysis_version": "1.0"
+  },
+  "user_profile": {
+    "age": 20,
+    "income": 1500,
+    "spending": {
+      "Food": 30.5,
+      "Transport": 15.0
+    }
+  },
+  "peer_comparison": {
+    "similar_users_count": 1,
+    "average_spending": {
+      "Food": 30.5,
+      "Transport": 15.0
+    },
+    "inflation_adjusted": {
+      "Food": 32.4825,
+      "Transport": 15.975
+    }
+  },
+  "market_conditions": {
+    "inflation_rate": 6.5
+  },
+  "insights": [
+    "Your spending aligns well with similar peers"
+  ],
+  "spending_by_category": {
+    "user": {
+      "Food": 30.5,
+      "Transport": 15.0
+    },
+    "peers": {
+      "Food": 30.5,
+      "Transport": 15.0
+    },
+    "inflation_adjusted": {
+      "Food": 32.4825,
+      "Transport": 15.975
+    }
+  }
+}
