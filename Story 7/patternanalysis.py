@@ -3,6 +3,9 @@ import pandas as pd
 import requests
 from sklearn.cluster import KMeans
 from typing import List, Dict
+import json
+from datetime import datetime
+from typing import Dict, Any
 
 # ====================== DATA CLASSES ======================
 class Transaction:
@@ -13,7 +16,6 @@ class Transaction:
         self.category = self._categorize()
     
     def _categorize(self) -> str:
-        """Rule-based transaction categorization"""
         categories = {
             "Food": ["mcdonalds", "starbucks", "groceries", "restaurant"],
             "Transport": ["uber", "lyft", "gas", "metro", "subway"],
@@ -92,7 +94,7 @@ class MarketAnalyzer:
             mock_response = {'inflation_rate': 6.5}
             return float(mock_response['inflation_rate'])
         except:
-            return 3.0  # Fallback value
+            return 3.0
     
     @staticmethod
     def adjust_for_inflation(values: Dict[str, float], inflation_rate: float) -> Dict[str, float]:
@@ -183,6 +185,42 @@ class SpendingAnalyzer:
             insights.append("Your spending aligns well with similar peers")
             
         return insights
+    
+    def export_to_json(self, analysis_results: Dict[str, Any], filename: str = None) -> str:
+        """
+        Exports analysis results to JSON with timestamp.
+        Structure includes:
+        - User profile
+        - Peer comparisons
+        - Market trends
+        - Generated insights
+        """
+        if not filename:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"spending_analysis_{timestamp}.json"
+        
+        # Prepare structured data
+        export_data = {
+            "metadata": {
+                "exported_at": datetime.now().isoformat(),
+                "analysis_version": "1.0"
+            },
+            "user_profile": analysis_results["user_profile"],
+            "peer_comparison": analysis_results["peer_comparison"],
+            "market_conditions": analysis_results["market_conditions"],
+            "insights": analysis_results["insights"],
+            "spending_by_category": {
+                "user": analysis_results["user_profile"]["spending"],
+                "peers": analysis_results["peer_comparison"]["average_spending"],
+                "inflation_adjusted": analysis_results["peer_comparison"]["inflation_adjusted"]
+            }
+        }
+        
+        with open(filename, 'w') as f:
+            json.dump(export_data, f, indent=2)
+        
+        print(f"Analysis exported to {filename}")
+        return filename
 
 # ====================== EXAMPLE USAGE ======================
 def create_sample_data() -> List[UserProfile]:
@@ -237,6 +275,14 @@ def main():
     print("\nInsights:")
     for insight in results['insights']:
         print(f"- {insight}")
+    
+    # Run analysis and export
+    analyzer = SpendingAnalyzer(test_user, peers)
+    results = analyzer.analyze()
+    
+    # Export to JSON
+    analyzer.export_to_json(results)  # Auto-generates filename
+    # Or specify custom name: analyzer.export_to_json(results, "my_analysis.json")
 
 if __name__ == "__main__":
     main()
